@@ -1,6 +1,6 @@
 {
   "name": "font-slice-plugin",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "一个基于woff2和fontmin的webpack字体分片工具",
   "types": "./lib/cjs/types/index.d.ts",
   "main": "./lib/cjs/index.js",
