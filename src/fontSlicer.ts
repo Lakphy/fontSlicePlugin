@@ -15,7 +15,7 @@ import {
 } from "./utils";
 import { UnicodeRangeType } from "./type";
 
-async function fontSlicer(
+export async function fontSlicer(
   content: Buffer,
   basePath: string,
   fileName: string,
@@ -118,5 +118,3 @@ async function fontSlicer(
   fs.writeFileSync(path.join(basePath, `${fontName}-slice.css`), cssData);
   return content;
 }
-
-export default fontSlicer;

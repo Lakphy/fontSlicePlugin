@@ -1,11 +1,10 @@
 import path from "path";
 import fs from "fs";
 import webpack from "webpack";
-import fontSlicer from "./fontSlicer";
+import { fontSlicer } from "./fontSlicer";
 import { FontSliceOptions } from "./type";
 
-class FontSlicePlugin {
-  options: FontSliceOptions;
+export class FontSlicePlugin {
   constructor(options: FontSliceOptions) {
     this.options = options || {
       fontDirectory: "public/web_fonts",
@@ -13,6 +12,7 @@ class FontSlicePlugin {
       tempDirectory: ".temp",
     };
   }
+  options: FontSliceOptions;
   apply(compiler: webpack.Compiler) {
     compiler.hooks.compilation.tap(
       "WebfontsBufferPlugin",
@@ -64,4 +64,4 @@ class FontSlicePlugin {
   }
 }
 
-export default FontSlicePlugin;
+// export default FontSlicePlugin;
