@@ -1,10 +1,15 @@
 {
-  "name": "fontsliceplugin",
-  "version": "1.0.0",
+  "name": "font-slice-plugin",
+  "version": "1.0.1",
   "description": "一个基于woff2和fontmin的webpack字体分片工具",
-  "main": "index.js",
+  "types": "./lib/cjs/types/index.d.ts",
+  "main": "./lib/cjs/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rm -rf ./lib",
+    "build": "npm run clean && npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc -p ./configs/tsconfig.esm.json && mv lib/esm/index.js lib/esm/index.mjs",
+    "build:cjs": "tsc -p ./configs/tsconfig.cjs.json",
+    "prepack": "npm run build"
   },
   "keywords": [],
   "author": "lakphy",
@@ -16,5 +21,30 @@
   "bugs": {
     "url": "https://github.com/Lakphy/fontSlicePlugin/issues"
   },
-  "homepage": "https://github.com/Lakphy/fontSlicePlugin#readme"
+  "homepage": "https://github.com/Lakphy/fontSlicePlugin#readme",
+  "files": [
+    "lib/**/*"
+  ],
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./lib/esm/types/index.d.ts",
+        "default": "./lib/esm/index.mjs"
+      },
+      "require": {
+        "types": "./lib/cjs/types/index.d.ts",
+        "default": "./lib/cjs/index.js"
+      }
+    }
+  },
+  "dependencies": {
+    "buffer-to-vinyl": "^1.1.0",
+    "fonteditor-core": "^2.3.2",
+    "fontmin": "^1.0.1",
+    "fs": "0.0.1-security",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0"
+  }
 }

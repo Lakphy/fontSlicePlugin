@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["ES6", "DOM"],
+    // target 属性向TypeScript指出要编译的项目代码的JavaScript版本。
+    "target": "ES6",
+    // module 属性向 TypeScript 指出在编译的项目代码时应该使用哪种JavaScript模块格式。
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    // outDir 和 declarationDir 属性向TypeScript指出了将编译的代码和定义其中使用的类型的结果放在哪里。
+    "outDir": "../lib/cjs",
+    "declarationDir": "../lib/cjs/types"
+  }
+}
