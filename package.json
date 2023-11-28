@@ -1,0 +1,20 @@
+{
+  "name": "fontsliceplugin",
+  "version": "1.0.0",
+  "description": "一个基于woff2和fontmin的webpack字体分片工具",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "lakphy",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Lakphy/fontSlicePlugin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Lakphy/fontSlicePlugin/issues"
+  },
+  "homepage": "https://github.com/Lakphy/fontSlicePlugin#readme"
+}
