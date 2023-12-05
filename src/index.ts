@@ -64,4 +64,35 @@ export class FontSlicePlugin {
   }
 }
 
-// export default FontSlicePlugin;
+export function fontSliceWorker(options: FontSliceOptions) {
+  return new Promise(async (resolve) => {
+    const fontDirectory: string = options.fontDirectory;
+    const assetsDirectory: string = options.assetsDirectory;
+    const tempDirectory: string = options.tempDirectory;
+
+    const files: string[] = fs.readdirSync(fontDirectory);
+    await Promise.all(
+      files.map(async (file: string) => {
+        const filePath: string = path.join(fontDirectory, file);
+        const fileContent = fs.readFileSync(filePath);
+        const buffer: Buffer = Buffer.from(fileContent);
+        if (!fs.existsSync(assetsDirectory)) {
+          fs.mkdirSync(assetsDirectory);
+        }
+        if (!fs.existsSync(path.join(assetsDirectory, `font`))) {
+          fs.mkdirSync(path.join(assetsDirectory, `font`));
+        }
+        if (!fs.existsSync(path.join(assetsDirectory, `font/${file}`))) {
+          await fontSlicer(
+            buffer,
+            path.join(assetsDirectory, "font"),
+            file,
+            tempDirectory
+          );
+        }
+        fs.writeFileSync(path.join(assetsDirectory, `font/${file}`), buffer);
+      })
+    );
+    resolve(1);
+  });
+}

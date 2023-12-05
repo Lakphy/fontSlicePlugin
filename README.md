@@ -23,3 +23,35 @@ usage:
   };
 }
 ```
+
+# Use Script Instead of Plugin?
+
+You can use font-slice-plugin in your npm script now!
+
+`package.json`
+
+```json
+{
+  "scripts": {
+    "build:fonts": "node scripts/build-fonts.js"
+  }
+}
+```
+
+`scripts/build-fonts.js`
+
+```js
+const { fontSliceWorker } = require("font-slice-plugin");
+
+fontSliceWorker({
+  fontDirectory: "public/web_fonts", // font directory
+  assetsDirectory: "public/static", // assets directory
+  tempDirectory: ".temp", // temp directory, please make sure it's in .gitignore
+});
+```
+
+`(in your terminal)`
+
+```bash
+npm run build:fonts
+```
